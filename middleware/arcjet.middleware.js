@@ -6,9 +6,13 @@ const arcjetMiddleware = async (req, res, next) => {
 
         if(decision.isDenied()) {
 
-            if(decision.reason.isRateLimit) return res.status(429).json({ message: 'Too Many Requests' });
+            if(decision.reason.isRateLimit()) {
+                return res.status(429).json({ message: 'Too Many Requests' });
+            }
 
-            if(decision.reason.isBot) return res.status(403).json({ message: 'Forbidden - Bot Detected' });
+            if(decision.reason.isBot()){
+                return res.status(403).json({ message: 'Forbidden - Bot Detected' });
+            }
 
             return res.status(403).json({ message: 'Access Denied' });
         }
