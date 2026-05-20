@@ -7,6 +7,7 @@ import userRoutes from './routes/user.routes.js';
 import subscriptionRoutes from './routes/subscription.routes.js';
 
 import errorMiddleware from './middleware/error.middleware.js';
+import arcjetMiddleware from './middleware/arcjet.middleware.js';
 
 import connectDB from './database/mongodb.js';
 
@@ -15,6 +16,7 @@ const app = express();
 app.use(express.json()); //allows handle json data sent in request or API calls
 app.use(express.urlencoded({ extended: false })); //helps to process the form data sent by a html form in a simple format
 app.use(cookieParser()); //allows to handle save user data in cookies and manage user sessions
+app.use(arcjetMiddleware); //apply Arcjet middleware to all routes
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/users', userRoutes);
