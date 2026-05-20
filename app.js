@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.json()); //allows handle json data sent in request or API calls
 app.use(express.urlencoded({ extended: false })); //helps to process the form data sent by a html form in a simple format
-app.use(cookieParser()); //allows to handle cookies sent in request or API calls
+app.use(cookieParser()); //allows to handle save user data in cookies and manage user sessions
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/users', userRoutes);
